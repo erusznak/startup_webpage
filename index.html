@@ -1,10 +1,373 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Test Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechFlow - Modern SaaS Solution</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #1a1a3e 0%, #16213e 50%, #0f3460 100%);
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(26, 26, 62, 0.95), rgba(26, 26, 62, 0.7));
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #b0b0b0;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #8b5cf6;
+    }
+
+    .cta-btn-nav {
+      background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+      color: white;
+      padding: 0.6rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+
+    .cta-btn-nav:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+      height: 100vh;
+      width: 100%;
+      gap: 4rem;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .hero-title .accent {
+      background: linear-gradient(135deg, #ec4899, #f97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+      color: white;
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-primary::before {
+      content: "⚡";
+      font-size: 1.1rem;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #8b5cf6;
+      padding: 1rem 2.5rem;
+      border: 2px solid #8b5cf6;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(139, 92, 246, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .features {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      color: #a0a0a0;
+    }
+
+    .feature-badge::before {
+      content: "✓";
+      color: #10b981;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      height: 100%;
+    }
+
+    .image-placeholder {
+      width: 400px;
+      height: 450px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+      border: 2px solid rgba(139, 92, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #666;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Responsive */
+    /* Footer */
+    footer {
+      background: linear-gradient(180deg, rgba(26, 26, 62, 0.5), #0a0a1a);
+      border-top: 1px solid rgba(139, 92, 246, 0.1);
+      padding: 4rem 5% 2rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .footer-credit {
+      font-size: 0.95rem;
+      color: #888;
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .footer-credit a {
+      color: #8b5cf6;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-credit a:hover {
+      color: #ec4899;
+    }
+
+    .footer-tagline {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-copyright {
+      font-size: 0.85rem;
+      color: #555;
+      border-top: 1px solid rgba(139, 92, 246, 0.1);
+      padding-top: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        padding: 2rem 5%;
+        height: auto;
+        min-height: 100vh;
+        padding-top: 8rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .hero-image {
+        margin-top: 2rem;
+      }
+
+      .image-placeholder {
+        width: 300px;
+        height: 350px;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .features {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello Internet 👋</h1>
-  <p>This is my first deployed website.</p>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">✨ TechFlow</div>
+    <ul class="nav-links">
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <button class="cta-btn-nav">Get Started</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Experience <span class="accent">smooth</span> workflow?
+      </h1>
+      <p class="hero-subtitle">
+        The modern productivity platform that brings order to your chaos and helps you accomplish more in less time.
+      </p>
+      
+      <div class="hero-buttons">
+        <button class="btn-primary">Get Started - Free</button>
+        <button class="btn-secondary">Watch Demo</button>
+      </div>
+
+      <div class="features">
+        <div class="feature-badge">One-time purchase</div>
+        <div class="feature-badge">100% Private</div>
+        <div class="feature-badge">30-day guarantee</div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <div class="image-placeholder">
+        Your Product Screenshot Here
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">✨ TechFlow</div>
+      <p class="footer-credit">
+        Made with ❤ by <a href="#">Your Name</a>. Crafted with care for productivity enthusiasts.
+      </p>
+      <p class="footer-tagline">
+        Designed to simplify your workflow and boost your productivity.
+      </p>
+      <p class="footer-copyright">
+        © 2025 TechFlow. All rights reserved.
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
